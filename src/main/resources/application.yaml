@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: Blogex
+  profiles:
+    active: default
+  datasource:
+    url: "jdbc:mysql://localhost:3306/nexioblog?serverTimezone=UTC"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: always
+    username: "optimizuser"
+    password: "mysql@optimiz123"
+
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      ddl-auto: update
+    show-sql: true
+
+  # Flyway
+#  flyway:
+#    enabled: true
+#    url: "jdbc:mysql://localhost:3306/nexioblog?serverTimezone=UTC"
+#    user: "optimizuser"
+#    password: "mysql@optimiz123"
+
+
+
