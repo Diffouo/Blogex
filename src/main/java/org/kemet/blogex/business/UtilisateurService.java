@@ -30,9 +30,8 @@ public class UtilisateurService {
     public List<Blog> findAllPostByUserID(Long id){
         Utilisateur user = utilisateurRepository.findById(id).orElseThrow(()
                 -> new ResourceNotFound("User", "id", (int)id.longValue()));
-        List<Blog> blogs = new ArrayList<>();
-        for(Blog blog: user.getBlogs()) blogs.add(blog);
-        return blogs;
+
+        return user.getBlogs().stream().collect(Collectors.toList());
     }
 
     // Get all the comments from userID

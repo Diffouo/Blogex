@@ -32,18 +32,18 @@ public class GroupeService {
     // Service that modify a group with param ID in the new param Groupe Object
     public Groupe updateGroup(Groupe groupe){
         Groupe group = groupeRepository.findById(groupe.getGroupid()).orElseThrow(()
-                -> new ResourceNotFound("Groupe", "id", groupe.getGroupid().intValue()));
+                -> new ResourceNotFound("Groupe", "id", groupe.getGroupid()));
         group.setGrouplabel(group.getGrouplabel());
         return groupeRepository.save(group);
     }
 
     public void deleteGroup(Integer id){
-        Groupe group = groupeRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Groupe", "id", id.intValue()));
+        Groupe group = groupeRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Groupe", "id", id));
         groupeRepository.delete(group);
     }
 
     public Groupe findGroupByID(Integer id){
-        return groupeRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Groupe", "id", id.intValue()));
+        return groupeRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Groupe", "id", id));
     }
 
     // Service returning a List of users from group ID
