@@ -1,4 +1,4 @@
-package org.kemet.blogex.entity;
+package org.kemet.blogex.domain;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -33,16 +33,16 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Utilisateur {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "accid")
-	private Integer id;
+	private Long id;
 
 	@Length(min=3, max=50, message="Le nom doit avoir entre 3 et 50 caractères")
 	@Column(name = "accnom", nullable = false)
 	@NotBlank
 	private String nom;
 
-	@Column(name = "accprenom", nullable = true)
+	@Column(name = "accprenom")
 	private String prenom;
 	
 	@Email
@@ -73,48 +73,24 @@ public class Utilisateur {
 	
 	@OneToMany(mappedBy = "postedby", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private Set<Blog> blogs = new HashSet<Blog>();
+	private Set<Blog> blogs = new HashSet<>();
 	
 	@OneToMany(mappedBy = "commentby", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private Set<Commentaire> comments = new HashSet<Commentaire>();
+	private Set<Commentaire> comments = new HashSet<>();
 	
 	public Utilisateur() {
 	}
 	
-	public Utilisateur(Integer id) {
+	public Utilisateur(Long id) {
 		this.id = id;
 	}
 
-	/**
-	 * @param id
-	 * @param nom
-	 * @param prenom
-	 * @param mail
-	 * @param phone
-	 * @param password
-	 * @param signupDate
-	 * @param groupe
-	 */
-	public Utilisateur(Integer id, @NotBlank String nom, String prenom, @NotBlank String mail, @NotBlank String phone,
-			@NotBlank String password, Date signupDate, Groupe groupe) {
-		
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.phone = phone;
-		this.password = password;
-		this.signupDate = signupDate;
-		this.groupe = groupe;
-	}
-
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

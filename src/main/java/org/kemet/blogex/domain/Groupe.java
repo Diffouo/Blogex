@@ -1,4 +1,4 @@
-package org.kemet.blogex.entity;
+package org.kemet.blogex.domain;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Groupe {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "groupid")
 	private Integer groupid;	
 	
@@ -31,25 +31,7 @@ public class Groupe {
 	
 	@OneToMany(mappedBy = "groupe", cascade = CascadeType.ALL)
 	@JsonManagedReference
-    private Set<Utilisateur> users = new HashSet<Utilisateur>();
-
-	public Groupe() {
-		super();
-	}
-
-	public Groupe(String groupelabel) {
-		this.grouplabel = groupelabel;
-	}
-	/**
-	 * @param groupid
-	 * @param grouplabel
-	 */
-	
-	public Groupe(Integer groupid, String grouplabel) {
-		super();
-		this.groupid = groupid;
-		this.grouplabel = grouplabel;
-	}
+    private Set<Utilisateur> users = new HashSet<>();
 
 	public Integer getGroupid() {
 		return groupid;

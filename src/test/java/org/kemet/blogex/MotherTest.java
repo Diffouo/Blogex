@@ -3,6 +3,8 @@ package org.kemet.blogex;
 import java.io.IOException;
 
 import org.junit.runner.RunWith;
+import org.kemet.blogex.api.GroupeController;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -35,7 +37,7 @@ public abstract class MotherTest {
 		return objectMapper.writeValueAsString(object);
 	}
 	
-	protected <T> T mapFromJson(String json, Class<T> myClass) throws JsonMappingException, JsonParseException, IOException {
+	protected <T> T mapFromJson(String json, Class<T> myClass) throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 		return objectMapper.readValue(json, myClass);
 	}

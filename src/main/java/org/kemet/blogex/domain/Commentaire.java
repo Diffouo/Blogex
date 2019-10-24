@@ -1,4 +1,4 @@
-package org.kemet.blogex.entity;
+package org.kemet.blogex.domain;
 
 import java.util.Date;
 
@@ -23,9 +23,9 @@ import org.hibernate.annotations.OnDeleteAction;
 public class Commentaire {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "commentid")
-	private Integer id;
+	private Long id;
 	
 	@Column(name = "commenttext", nullable = false)
 	@NotBlank
@@ -48,71 +48,41 @@ public class Commentaire {
 	private Utilisateur commentby;
 
 
-	public Commentaire() {
-
-	}
-
-
-	/**
-	 * @param id
-	 * @param text
-	 * @param dateCmt
-	 * @param blog
-	 * @param commentby
-	 */
-	public Commentaire(Integer id, @NotBlank String text, Date dateCmt, Blog blog, Utilisateur commentby) {
-		this.id = id;
-		this.text = text;
-		this.dateCmt = dateCmt;
-		this.blog = blog;
-		this.commentby = commentby;
-	}
-
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public String getText() {
 		return text;
 	}
 
-
 	public void setText(String text) {
 		this.text = text;
 	}
-
 
 	public Date getDateCmt() {
 		return dateCmt;
 	}
 
-
 	public void setDateCmt(Date dateCmt) {
 		this.dateCmt = dateCmt;
 	}
-
 
 	public Blog getBlog() {
 		return blog;
 	}
 
-
 	public void setBlog(Blog blog) {
 		this.blog = blog;
 	}
 
-
 	public Utilisateur getCommentby() {
 		return commentby;
 	}
-
 
 	public void setCommentby(Utilisateur commentby) {
 		this.commentby = commentby;

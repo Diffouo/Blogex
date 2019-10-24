@@ -1,4 +1,4 @@
-package org.kemet.blogex.entity;
+package org.kemet.blogex.domain;
 
 
 import java.util.Date;
@@ -31,9 +31,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Blog {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "blogid")
-	private Integer id;
+	private Long id;
 	
 	@Column(name = "titre", nullable = false)
 	@NotBlank
@@ -57,37 +57,11 @@ public class Blog {
 	@JsonManagedReference
 	private Set<Commentaire> comments;
 
-	public Blog() {
-		
-	}
-	
-	public Blog(Integer id) {
-		this.id = id;
-	}
-	
-	
-
-	/**
-	 * @param id
-	 * @param title
-	 * @param content
-	 * @param postOn
-	 * @param postedby
-	 */
-	public Blog(Integer id, @NotBlank String title, @NotBlank String content, Date postOn, Utilisateur postedby) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.content = content;
-		this.postOn = postOn;
-		this.postedby = postedby;
-	}
-
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

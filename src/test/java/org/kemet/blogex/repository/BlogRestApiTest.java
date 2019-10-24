@@ -8,9 +8,9 @@ import java.util.Calendar;
 import org.junit.Before;
 import org.junit.Test;
 import org.kemet.blogex.MotherTest;
-import org.kemet.blogex.entity.Blog;
-import org.kemet.blogex.entity.Commentaire;
-import org.kemet.blogex.entity.Utilisateur;
+import org.kemet.blogex.domain.Blog;
+import org.kemet.blogex.domain.Commentaire;
+import org.kemet.blogex.domain.Utilisateur;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -27,12 +27,13 @@ public class BlogRestApiTest extends MotherTest {
 	public void createComment() throws Exception {
 		String uri = "/post/2/comment";
 		Commentaire comment = new Commentaire();
-		
+		Blog blog = new Blog();
+		blog.setId(2L);
 		//comment.setId(5);
 		comment.setText("Un autre mock commentaire, je vois le test 3");
 		comment.setDateCmt(Calendar.getInstance().getTime());
-		comment.setBlog(new Blog(2));
-		comment.setCommentby(new Utilisateur(2));
+		comment.setBlog(blog);
+		comment.setCommentby(new Utilisateur(2L));
 		
 		String inputJson = super.mapToJson(comment);
 		MvcResult mvcResult = mock.perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON)
@@ -63,12 +64,15 @@ public class BlogRestApiTest extends MotherTest {
 	@Test
 	public void updateComment() throws Exception {
 		String uri = "/post/29/comments";
+		Blog blog = new Blog();
+		blog.setId(2L);
+
 		Commentaire comment = new Commentaire();
-		comment.setId(29);
+		comment.setId(29L);
 		comment.setText("Commentaire mock updated 2");
 		comment.setDateCmt(Calendar.getInstance().getTime());
-		comment.setBlog(new Blog(2));
-		comment.setCommentby(new Utilisateur(2));
+		comment.setBlog(blog);
+		comment.setCommentby(new Utilisateur(2L));
 		
 		String inputJson = super.mapToJson(comment);
 		MvcResult mvcResult = mock.perform(MockMvcRequestBuilders.put(uri)
@@ -80,7 +84,7 @@ public class BlogRestApiTest extends MotherTest {
 		
 		String content = mvcResult.getResponse().getContentAsString();
 		Commentaire newCom = super.mapFromJson(content, Commentaire.class);
-		assertTrue(comment.getText().equals(newCom.getText()));
+		assertEquals(comment.getText(), newCom.getText());
 	}
 	
 	@Test
