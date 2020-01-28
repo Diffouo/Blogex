@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `blog` (
       `accid` bigint(20) NOT NULL,
       PRIMARY KEY (`blogid`),
       KEY `accid` (`accid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `commentaire` (
      `commentid` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -17,14 +17,14 @@ CREATE TABLE IF NOT EXISTS `commentaire` (
      PRIMARY KEY (`commentid`),
      KEY `blogid` (`blogid`),
      KEY `accid` (`accid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `groupe` (
     `groupid` int(4) NOT NULL AUTO_INCREMENT,
     `grouplabel` varchar(20) NOT NULL,
     PRIMARY KEY (`groupid`),
     UNIQUE KEY `grouplabel` (`grouplabel`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `utilisateur` (
      `accid` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -37,25 +37,4 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
      `groupid` int(4) NOT NULL,
      PRIMARY KEY (`accid`),
      KEY `groupid` (`groupid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
-
---
--- Contraintes pour la table `blog`
---
-# ALTER TABLE `blog`
-#     ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`accid`) REFERENCES `utilisateur` (`accid`);
-
---
--- Contraintes pour la table `commentaire`
---
-ALTER TABLE `commentaire`
-    ADD CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`blogid`) REFERENCES `blog` (`blogid`);
-    
-ALTER TABLE `commentaire`    
-    ADD CONSTRAINT `commentaire_ibfk_2` FOREIGN KEY (`accid`) REFERENCES `utilisateur` (`accid`);
-
---
--- Contraintes pour la table `utilisateur`
---
-ALTER TABLE `utilisateur`
-    ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`groupid`) REFERENCES `groupe` (`groupid`);
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
