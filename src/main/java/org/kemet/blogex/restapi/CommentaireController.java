@@ -1,7 +1,7 @@
 package org.kemet.blogex.restapi;
 import java.util.List;
 
-import org.kemet.blogex.entity.Commentaire;
+import org.kemet.blogex.domain.Commentaire;
 import org.kemet.blogex.repository.CommentaireRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/comments")
-public class CommentaireREST {
+public class CommentaireController {
 	
 	@Autowired
 	CommentaireRepository commentRepo;

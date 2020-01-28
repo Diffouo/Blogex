@@ -1,6 +1,31 @@
+--
+-- Contenu de la table `groupe`
+--
+
+INSERT INTO `groupe` (`groupid`, `grouplabel`) VALUES
+(1, 'Abonne'),
+(2, 'Administrateur'),
+(11, 'Controlleur'),
+(12, 'Supperviseur');
+
+--
+-- Contenu de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`accid`, `accnom`, `accprenom`, `accemail`, `accphone`, `acckey`, `accdate`, `groupid`) VALUES
+(1, 'Diffouo', 'Jospin', 'jdiffouo@gmail.com', '237698757510', '0000', '2019-06-03 00:00:00', 1),
+(2, 'Kamga', 'Pierre', 'pierrekamga@gmail.com', '237677869809', '0000', '2019-06-03 00:00:00', 1),
+(3, 'admin test', 'prenom test', 'admin@test.com', '237672546721', '0000', '2019-06-03 11:09:00', 2),
+(9, 'user 2Test01', '2Test01', '2Test01@gmail.com', '237699897865', '0000', '2019-06-12 00:00:00', 2),
+(10, 'user 2Test02', '2Test02', '2Test02@gmail.com', '237698765432', '0000', '2019-06-12 00:00:00', 1);
+
+--
+-- Contenu de la table `blog`
+--
+
 INSERT INTO `blog` (`blogid`, `titre`, `contenu`, `datepost`, `accid`) VALUES
 (1, 'Electricité: la BT', 'Lorem ipsum, bla bla bla bla', '2019-06-03 00:00:00', 1),
-(2, 'Titre de test 01', 'Contenu de test 01', '2019-06-03 00:00:00', 2);
+(2, 'Titre de test 01', 'Contenu de test 01', '2019-06-03 00:00:00', 2);;
 
 --
 -- Contenu de la table `commentaire`
@@ -28,33 +53,4 @@ INSERT INTO `commentaire` (`commentid`, `commenttext`, `commentdate`, `blogid`, 
 (36, 'Voici encore un autre postMan Test', '2019-08-29 00:00:00', 2, 10),
 (37, 'Les comments again sur postMan pour status Test', '2019-08-30 00:00:00', 2, 9);
 
---
--- Contenu de la table `groupe`
---
 
-INSERT INTO `groupe` (`groupid`, `grouplabel`) VALUES
-(1, 'Abonne'),
-(2, 'Administrateur'),
-(11, 'Controlleur'),
-(12, 'Supperviseur');
-
---
--- Contenu de la table `hibernate_sequence`
---
-
-INSERT INTO `hibernate_sequence` (`next_val`) VALUES
-(38),
-(38),
-(38),
-(38);
-
---
--- Contenu de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`accid`, `accnom`, `accprenom`, `accemail`, `accphone`, `acckey`, `accdate`, `groupid`) VALUES
-(1, 'Diffouo', 'Jospin', 'jdiffouo@gmail.com', '237698757510', '0000', '2019-06-03 00:00:00', 1),
-(2, 'Kamga', 'Pierre', 'pierrekamga@gmail.com', '237677869809', '0000', '2019-06-03 00:00:00', 1),
-(3, 'admin test', 'prenom test', 'admin@test.com', '237672546721', '0000', '2019-06-03 11:09:00', 2),
-(9, 'user 2Test01', '2Test01', '2Test01@gmail.com', '237699897865', '0000', '2019-06-12 00:00:00', 2),
-(10, 'user 2Test02', '2Test02', '2Test02@gmail.com', '237698765432', '0000', '2019-06-12 00:00:00', 1);

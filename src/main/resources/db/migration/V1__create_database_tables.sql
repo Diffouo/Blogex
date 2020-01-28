@@ -26,10 +26,6 @@ CREATE TABLE IF NOT EXISTS `groupe` (
     UNIQUE KEY `grouplabel` (`grouplabel`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
-CREATE TABLE IF NOT EXISTS `hibernate_sequence` (
-    `next_val` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE IF NOT EXISTS `utilisateur` (
      `accid` bigint(20) NOT NULL AUTO_INCREMENT,
      `accnom` varchar(50) NOT NULL,
@@ -53,7 +49,9 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Contraintes pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-    ADD CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`blogid`) REFERENCES `blog` (`blogid`),
+    ADD CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`blogid`) REFERENCES `blog` (`blogid`);
+    
+ALTER TABLE `commentaire`    
     ADD CONSTRAINT `commentaire_ibfk_2` FOREIGN KEY (`accid`) REFERENCES `utilisateur` (`accid`);
 
 --

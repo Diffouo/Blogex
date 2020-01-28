@@ -1,4 +1,4 @@
-package org.kemet.blogex.entity;
+package org.kemet.blogex.domain;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -21,50 +21,31 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Groupe {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "groupid")
-	private Integer groupid;	
+	private Integer id;	
 	
 	@Column(name = "grouplabel", nullable = false)
-
-	private String grouplabel;
+	private String name;
 	
 	@OneToMany(mappedBy = "groupe", cascade = CascadeType.ALL)
 	@JsonManagedReference
     private Set<Utilisateur> users = new HashSet<Utilisateur>();
 
-	public Groupe() {
-		super();
+	public Integer getId() {
+		return id;
 	}
 
-	public Groupe(String groupelabel) {
-		this.grouplabel = groupelabel;
-	}
-	/**
-	 * @param groupid
-	 * @param grouplabel
-	 */
-	
-	public Groupe(Integer groupid, String grouplabel) {
-		super();
-		this.groupid = groupid;
-		this.grouplabel = grouplabel;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public Integer getGroupid() {
-		return groupid;
+	public String getName() {
+		return name;
 	}
 
-	public void setGroupid(Integer groupid) {
-		this.groupid = groupid;
-	}
-
-	public String getGrouplabel() {
-		return grouplabel;
-	}
-
-	public void setGrouplabel(String grouplabel) {
-		this.grouplabel = grouplabel;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Set<Utilisateur> getUsers() {
@@ -73,6 +54,6 @@ public class Groupe {
 
 	public void setUsers(Set<Utilisateur> users) {
 		this.users = users;
-	}
+	}	
 	
 }

@@ -7,21 +7,22 @@ spring:
     url: "jdbc:mysql://localhost:3306/nexioblog?serverTimezone=UTC"
     driver-class-name: com.mysql.cj.jdbc.Driver
     initialization-mode: always
-    username: "optimizuser"
-    password: "mysql@optimiz123"
+    username: "root"
+    password: ""
 
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
 
   # Flyway
-#  flyway:
-#    enabled: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
 #    url: "jdbc:mysql://localhost:3306/nexioblog?serverTimezone=UTC"
 #    user: "optimizuser"
 #    password: "mysql@optimiz123"
 
-
+server:  port: 8090
 

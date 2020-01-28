@@ -1,4 +1,4 @@
-package org.kemet.blogex.entity;
+package org.kemet.blogex.domain;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -17,11 +17,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -33,38 +31,30 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Utilisateur {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "accid")
-	private Integer id;
+	private Long id;
 
-	@Length(min=3, max=50, message="Le nom doit avoir entre 3 et 50 caractères")
-	@Column(name = "accnom", nullable = false)
-	@NotBlank
+	@Column(name = "accnom")
 	private String nom;
 
-	@Column(name = "accprenom", nullable = true)
+	@Column(name = "accprenom")
 	private String prenom;
 	
 	@Email
-	@Column(name = "accemail", nullable = false)
-	@NotBlank
+	@Column(name = "accemail")
 	private String mail;
 	
-	@Length(min=3, max=20, message="Le numéro de téléphone doit avoir entre 3 et 20 caractères")
-	@Column(name = "accphone", nullable = false)
-	@NotBlank
+	@Column(name = "accphone")
 	private String phone;
 	
-	@Column(name = "acckey", nullable = false)
-	@NotBlank
+	@Column(name = "acckey")
 	private String password;
 	
-	@Column(name = "accdate", nullable = false)
+	@Column(name = "accdate")
 	@Temporal(TemporalType.DATE)
 	private Date signupDate;
 	
-	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	//@JsonBackReference(value="users")
 	@ManyToOne
 	@JoinColumn(name = "groupid")
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -78,43 +68,13 @@ public class Utilisateur {
 	@OneToMany(mappedBy = "commentby", cascade = CascadeType.ALL)
 	@JsonManagedReference
 	private Set<Commentaire> comments = new HashSet<Commentaire>();
-	
-	public Utilisateur() {
-	}
-	
-	public Utilisateur(Integer id) {
-		this.id = id;
-	}
-
-	/**
-	 * @param id
-	 * @param nom
-	 * @param prenom
-	 * @param mail
-	 * @param phone
-	 * @param password
-	 * @param signupDate
-	 * @param groupe
-	 */
-	public Utilisateur(Integer id, @NotBlank String nom, String prenom, @NotBlank String mail, @NotBlank String phone,
-			@NotBlank String password, Date signupDate, Groupe groupe) {
-		
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.phone = phone;
-		this.password = password;
-		this.signupDate = signupDate;
-		this.groupe = groupe;
-	}
 
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

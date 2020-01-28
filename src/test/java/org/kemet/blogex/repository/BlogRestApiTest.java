@@ -8,9 +8,9 @@ import java.util.Calendar;
 import org.junit.Before;
 import org.junit.Test;
 import org.kemet.blogex.MotherTest;
-import org.kemet.blogex.entity.Blog;
-import org.kemet.blogex.entity.Commentaire;
-import org.kemet.blogex.entity.Utilisateur;
+import org.kemet.blogex.domain.Blog;
+import org.kemet.blogex.domain.Commentaire;
+import org.kemet.blogex.domain.Utilisateur;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -27,12 +27,16 @@ public class BlogRestApiTest extends MotherTest {
 	public void createComment() throws Exception {
 		String uri = "/post/2/comment";
 		Commentaire comment = new Commentaire();
+		Blog blog = new Blog();
+		blog.setId(2L);
+		Utilisateur user = new Utilisateur();
+		user.setId(2L);
 		
 		//comment.setId(5);
 		comment.setText("Un autre mock commentaire, je vois le test 3");
 		comment.setDateCmt(Calendar.getInstance().getTime());
-		comment.setBlog(new Blog(2));
-		comment.setCommentby(new Utilisateur(2));
+		comment.setBlog(blog);
+		comment.setCommentby(user);
 		
 		String inputJson = super.mapToJson(comment);
 		MvcResult mvcResult = mock.perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON)
@@ -64,11 +68,15 @@ public class BlogRestApiTest extends MotherTest {
 	public void updateComment() throws Exception {
 		String uri = "/post/29/comments";
 		Commentaire comment = new Commentaire();
-		comment.setId(29);
+		Blog blog = new Blog();
+		blog.setId(2L);
+		Utilisateur user = new Utilisateur();
+		user.setId(2L);
+		comment.setId(29L);
 		comment.setText("Commentaire mock updated 2");
 		comment.setDateCmt(Calendar.getInstance().getTime());
-		comment.setBlog(new Blog(2));
-		comment.setCommentby(new Utilisateur(2));
+		comment.setBlog(blog);
+		comment.setCommentby(user);
 		
 		String inputJson = super.mapToJson(comment);
 		MvcResult mvcResult = mock.perform(MockMvcRequestBuilders.put(uri)
